@@ -8,7 +8,7 @@
 
 **Instalação:** Para executar o código, é necessário ter um compilador Java instalado na máquina, como o Intellij, Eclipse, Netbeans entre outros.
 
-*Como usar:** Você pode utilizar o arquivo Main para acessar as funções da aplicação, como:
+*Como usar:** Você pode utilizar o arquivo Main.java para acessar as funções da aplicação, como:
 
 graph.addVertex("d"); - adicionar vertice<br>
 graph.addEdge("a", "b"); - adicionar aresta<br>
