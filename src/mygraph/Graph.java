@@ -1,7 +1,6 @@
 package mygraph;
 
-import java.util.List;
-import java.util.LinkedList;
+import java.util.*;
 import java.util.stream.Collectors;
 
 class Edge {
@@ -246,4 +245,49 @@ public class Graph {
         return intersection;
     }
 
+    public List<Vertex> buscaBfs(String startValue, String endValue) {
+        Vertex start = findVertex(startValue);
+        Vertex end = findVertex(endValue);
+
+        if (start == null || end == null) {
+            return null;
+        }
+        Queue<Vertex> queue = new LinkedList<>();
+        Set<Vertex> visited = new HashSet<>();
+        Map<Vertex, Vertex> parentMap = new HashMap<>();
+
+        queue.offer(start);
+        visited.add(start);
+
+        while (!queue.isEmpty()) {
+            Vertex current = queue.poll();
+
+            if (current == end) {
+                return reconstruirCaminho(parentMap, end);
+            }
+
+            for (Edge edge : current.getEdges()) {
+                Vertex neighbor = edge.getTo();
+                if (!visited.contains(neighbor)) {
+                    visited.add(neighbor);
+                    parentMap.put(neighbor, current);
+                    queue.offer(neighbor);
+                }
+            }
+        }
+
+        return null;
+    }
+
+    private List<Vertex> reconstruirCaminho(Map<Vertex, Vertex> parentMap, Vertex end) {
+        List<Vertex> path = new ArrayList<>();
+        Vertex current = end;
+
+        while (current != null) {
+            path.add(0, current);
+            current = parentMap.get(current);
+        }
+
+        return path;
+    }
 }

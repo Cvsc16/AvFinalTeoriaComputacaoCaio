@@ -1,5 +1,7 @@
 package mygraph;
 
+import java.util.List;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -9,11 +11,14 @@ public class Main {
         graph.addVertex("b");
         graph.addVertex("c");
         graph.addVertex("d");
+        graph.addVertex("e");
 
         graph.addEdge("a", "b");
         graph.addEdge("a", "c");
         graph.addEdge("b", "c");
         graph.addEdge("a", "d");
+        graph.addEdge("c", "d");
+        graph.addEdge("b", "e");
 
 
 
@@ -53,6 +58,17 @@ public class Main {
         var graphIntersection = graph.interseccao(graph2);
         System.out.println("");
         System.out.println("Grafo resultante da intersecção entre G1 e G2: " + graphIntersection);
+
+        System.out.println("");
+        System.out.println("Avaliação Final");
+        System.out.println("Parte com a implementação do arquivo BFS no grafo:");
+        System.out.println("");
+        List<Vertex> path = graph.buscaBfs("a", "e");
+        if (path != null) {
+            System.out.println("Caminho encontrado: " + path);
+        } else {
+            System.out.println("Não foi possível encontrar um caminho do vértice a ao vértice e.");
+        }
 
         System.exit(0);
     }
